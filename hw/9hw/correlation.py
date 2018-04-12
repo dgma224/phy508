@@ -4,17 +4,23 @@ import matplotlib.pyplot as plt
 import os
 import sys
 import time
-
+from scipy.optimize import curve_fit
 code='ising'
 #params
-Nlins=[10,20,50,100]
-beta=0.5
+Nlins=np.linspace(5,100,20)
+beta=np.log(1+np.sqrt(2))/2
 Neql=1000
 Nmcs=1
 Nbin=100000
 SEED=100
 latt='sqlatt_PBC'
 corrtime=100
+
+sumthetas=np.zeros(len(Nlins))
+fitthetas=np.zeros(len(Nlins))
+def func(x,a,b):
+  return a*np.exp(-1.0*x/b)
+
 for j in range(len(Nlins)):
   #now call the code to get the data
   #first call the code and get the data values
@@ -27,7 +33,7 @@ for j in range(len(Nlins)):
   print('Analyzing '+str(Nlins[j]))
   #now need to call the code with a huge number of runs
   a=np.zeros(corrtime)
-  mags=data[:,2]
+  mags=data[:,3]
   Asquared=np.mean(mags)**2 #average squared
   AA=np.mean(mags*mags)#average of the squared
   corrtimes=np.arange(corrtime)
@@ -39,8 +45,32 @@ for j in range(len(Nlins)):
     a[i]=(AB-Asquared)/(AA-Asquared)
   legend='L'+str(Nlins[j])
   plt.plot(corrtimes,a,label=legend)
+  #now do the curve fitting
+  res,blah=curve_fit(func,corrtimes,a)
+  fitthetas[j]=res[1]
+  sumthetas[j]=np.sum(a)
+  print('L='+str(Nlins[j])+' : a='+str(res[0])+', b='+str(res[1]))
+  #now do integrated time thingy
+  print('Theta = '+str(np.sum(a)))
 plt.legend(loc='upper right')
-plt.title(str(code)+' Algorithm Correlation')
+plt.title('Single Spin-Flip Algorithm Correlation: B='+str(beta))
 plt.xlabel('Time (number of sweeps)')
 plt.ylabel('Correlation Coefficient')
 plt.show()
+
+plt.clf()
+plt.plot(Nlins,fitthetas,label='Fitted Thetas')
+plt.plot(Nlins,sumthetas,label='Summed Thetas')
+plt.xlabel('Nlin')
+plt.ylabel('Theta')
+plt.title('Theta versus Size of Lattice for Single Spin-Flip')
+plt.show()
+
+#now fit the functions
+def func2(x,a,b):
+  return a*x**b
+
+fitres,blah=curve_fit(func2,Nlins,fitthetas)
+sumres,blah=curve_fit(func2,Nlins,sumthetas)
+print('fit theta z = '+str(fitres[1]))
+print('sum theta z = '+str(sumres[1]))

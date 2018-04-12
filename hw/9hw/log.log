@@ -1,5 +1,5 @@
 --- Parameters at input for percolation problem ---
-Nlin = 100; beta = 0.5
+Nlin = 100; beta = 0.440687
 # of equillibrium sweeps = 1000; # of Sweeps/bin = 1
 # of bins =  100000; SEED = 100
 Lattice Type = sqlatt_PBC
