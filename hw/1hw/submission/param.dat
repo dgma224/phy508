@@ -1,0 +1,7 @@
+1.0 0.1 0.15 6.28
+0.0 2.0 100.0
+4000 euler_cromer
+
+# g/l kappa F_D T_D
+# ic_ang ic_avel t_final
+# Nstep method

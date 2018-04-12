@@ -1,0 +1,6 @@
+plot 'basecondition.out' u 1:2 w l title "Calculated"
+replot 'test' u 1:2 w l title "Analytic"
+set title "Comparing Analytic and Calculated Solutions"
+set xlabel "Time (s)"
+set ylabel "Angular Position"
+replot

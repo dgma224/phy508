@@ -1,0 +1,15 @@
+Estimating Errors
+
+Binning Data
+
+Determine if a cluster spans the lattice
+  For open boundary conditions
+    Easier to check
+    it spans if there is a member on each opposing edges
+      there must be connecting nodes in between
+  for periodic boundary conditions
+    must be an entry in each row or each column
+      row vs column depends on the direction
+      shouldn't be too hard to check
+
+

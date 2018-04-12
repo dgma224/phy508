@@ -1,0 +1,13 @@
+build.sh : Script I used to compile all of my codes
+
+comparison.py : Python plotting code to compare the Linear to Nonlinear results
+
+dt_getd.py : Error analysis code used in Part 1
+
+full_nl_pndlm.cpp : Full Non-linear version of the code
+
+plot.py : Most of this isn't used as it was from last week, but the second to last plot section was used to generate the Error Analysis grap
+
+rungeenergyincrease.py : This plot script was used to generate the plots for the Runge-Kutta method as the initial velocity increased
+
+smpl_pndlm.pp : This is the linear version of the code

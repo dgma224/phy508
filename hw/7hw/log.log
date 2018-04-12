@@ -1,0 +1,5 @@
+--- Parameters at input for percolation problem ---
+Nlin = 195; prob. of site = 0.7
+Number of clusters in a bin = 10; Number of bins = 100
+RNG will be given SEED of = 10
+Percolation problem on lattice --> sqlatt_OBC

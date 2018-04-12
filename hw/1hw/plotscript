@@ -1,0 +1,6 @@
+plot 'basecondition.out' u 1:2 w l title "Original"
+replot 'adjustedstart.out' u 1:2 w l title "Adjusted"
+set title "Comparing Two Starting Conditions Over Time"
+set xlabel "Time (s)"
+set ylabel "Angular Position"
+replot

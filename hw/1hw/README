@@ -1,0 +1,11 @@
+I used GNUPLOT for all of the plotting in this particular assignment. Two of the scripts I used are in the files plotscript and secondscript. These will absolutely not work in Python.
+
+List of files and their functions below:
+smpl_pndlm.cpp | C++ Code
+build.sh | build script
+param.dat | param file
+plotscript | GNUPlot script for the first graph
+secondscript | GNUPlot script for the second graph
+plot.py | Python script for generating the resonance and exact solutions data
+        | values were sent to files with python plot.py > testfile
+

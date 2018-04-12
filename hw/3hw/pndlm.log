@@ -1,0 +1,5 @@
+--- Parameters at input for pendulum program ---
+g/l = 1; kappa = 0.5; F_D = 0.1; T_D = 9.4245
+init angle = 2.09433; init vel = 4; t_final = 100
+Nstep = 100000; method = runge_kutta
+natural time period =6.28319
