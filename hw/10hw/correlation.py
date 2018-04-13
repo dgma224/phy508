@@ -64,7 +64,7 @@ plt.plot(Nlins,fitthetas,label='Fitted Thetas')
 plt.plot(Nlins,sumthetas,label='Summed Thetas')
 plt.xlabel('Nlin')
 plt.ylabel('Theta')
-plt.title('Theta versus Size of Lattice')
+plt.title('Theta versus Size of Lattice for Wolff Algorithm')
 plt.show()
 
 #now fit the functions
