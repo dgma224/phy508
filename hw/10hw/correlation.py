@@ -7,8 +7,7 @@ import time
 from scipy.optimize import curve_fit
 code='wolff'
 #params
-Nlins=np.linspace(5,100,20)
-print(Nlins)
+Nlins=[5,10,25,50,100]
 beta=np.log(1+np.sqrt(2))/2
 Neql=1000
 Nmcs=1
@@ -17,8 +16,6 @@ SEED=100
 latt='sqlatt_PBC'
 corrtime=100
 
-sumthetas=np.zeros(len(Nlins))
-fitthetas=np.zeros(len(Nlins))
 def func(x,a,b):
   return a*np.exp(-1.0*x/b)
 
@@ -48,8 +45,6 @@ for j in range(len(Nlins)):
   plt.plot(corrtimes,a,label=legend)
   #now do the curve fitting
   res,blah=curve_fit(func,corrtimes,a)
-  fitthetas[j]=res[1]
-  sumthetas[j]=np.sum(a)
   print('L='+str(Nlins[j])+' : a='+str(res[0])+', b='+str(res[1]))
   #now do integrated time thingy
   print('Theta = '+str(np.sum(a)))
@@ -58,20 +53,3 @@ plt.title(str(code)+' Algorithm Correlation: B='+str(beta))
 plt.xlabel('Time (number of sweeps)')
 plt.ylabel('Correlation Coefficient')
 plt.show()
-
-plt.clf()
-plt.plot(Nlins,fitthetas,label='Fitted Thetas')
-plt.plot(Nlins,sumthetas,label='Summed Thetas')
-plt.xlabel('Nlin')
-plt.ylabel('Theta')
-plt.title('Theta versus Size of Lattice for Wolff Algorithm')
-plt.show()
-
-#now fit the functions
-def func2(x,a,b):
-  return a*x**b
-
-fitres,blah=curve_fit(func2,Nlins,fitthetas)
-sumres,blah=curve_fit(func2,Nlins,sumthetas)
-print('fit theta z = '+str(fitres[1]))
-print('sum theta z = '+str(sumres[1]))

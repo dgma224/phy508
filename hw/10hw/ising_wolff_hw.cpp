@@ -79,7 +79,7 @@ int main(void)
       ising.meas(p,latt,ran1);
     }
     ising.binwrite(p,latt,ran1);
-    //ising.conf_write(p,latt,bin);
+    ising.conf_write(p,latt,bin);
   }
 }
 
@@ -177,32 +177,6 @@ ISING_CONF::ISING_CONF(const PARAMS& p, const LATTICE& latt, MTRand& ran1)
   for(int i = 0;i<p.Nlin*p.Nlin;i++){
     spin.at(i)=ran1.randInt(1);
   }
-  //CREATE WEIGHT TABLE
-  if(p.latt_=="sqlatt_PBC")
-    {
-      //weight table, first index is sigma old
-      //second index is sigma new
-      //third index is sum of surrounding indices
-      //first resize vector
-      wght_tbl.resize(2);
-      for(int i = 0;i<2;i++){
-        wght_tbl.at(i).resize(2);
-        for(int j = 0;j<2;j++){
-          wght_tbl.at(i).at(j).resize(5);
-        }
-      }
-      //now iterate through this mess and calculate each value
-      for(int i = 0;i<2;i++){
-        for(int j = 0;j<2;j++){
-          for(int k = 0;k<5;k++){
-            wght_tbl.at(i).at(j).at(k)=exp(2.0*p.beta*(j-i)*(2.0*k-4.0));
-          }
-        }
-      }
-      
-    }
-  else
-    {cout <<"NEED TO CODE ALL LATTICE OPTIONS"<<endl;}
   //now initialize the cluster code
   stack.resize(latt.Nsite);
   //joining probability

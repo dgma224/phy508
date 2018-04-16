@@ -4,7 +4,7 @@ import matplotlib.animation as animation
 import glob,os
 os.chdir(".")
 
-spins=200
+spins=1000
 #figure
 def f(i):
   return np.loadtxt('conf'+str(i)+'.spin')
